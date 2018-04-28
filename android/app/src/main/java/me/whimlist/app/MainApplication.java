@@ -1,4 +1,4 @@
-package org.blankapp.whimlist;
+package me.whimlist.app;
 
 import android.app.Application;
 
