@@ -10,6 +10,7 @@ import Register from '../screens/Register';
 import Settings from '../screens/Settings';
 import TaskDetail from '../screens/TaskDetail';
 import TaskNew from '../screens/TaskNew';
+import UserProfile from '../screens/UserProfile';
 
 const routeConfigMap = {
   Example: {
@@ -48,6 +49,9 @@ const routeConfigMap = {
   },
   TaskNew: {
     screen: TaskNew,
+  },
+  UserProfile: {
+    screen: UserProfile,
   },
 };
 

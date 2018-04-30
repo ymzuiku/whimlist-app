@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import locales from '../resources/locales';
 
 class Lang {
@@ -7,7 +6,8 @@ class Lang {
   }
 
   get(key) {
-    return _.get(locales, `${this.lang}.${key}`);
+    return `${locales[key]}`;
+    // return _.get(locales, `${this.lang}.${key}`);
   }
 }
 

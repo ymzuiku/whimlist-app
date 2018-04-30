@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { ActivityIndicator, Screen } from '@blankapp/ui';
 import { NavigationActions } from 'react-navigation';
+import { connect } from 'react-redux';
 
 class Initialize extends Component {
   static navigationOptions = {
@@ -14,12 +15,14 @@ class Initialize extends Component {
 
   componentDidMount() {
     setTimeout(() => {
-      const resetAction = NavigationActions.reset({
+      const { auth } = this.props; // eslint-disable-line
+      const routeName = auth.isLoggedIn ? 'Home' : 'Login';
+
+      this.navigation.dispatch(NavigationActions.reset({
         index: 0,
-        actions: [NavigationActions.navigate({ routeName: 'Home' })],
-      });
-      this.navigation.dispatch(resetAction);
-    }, 600);
+        actions: [NavigationActions.navigate({ routeName })],
+      }));
+    }, 300);
   }
 
   render() {
@@ -36,5 +39,8 @@ class Initialize extends Component {
     );
   }
 }
+const mapStateToProps = state => ({
+  auth: state.auth,
+});
 
-export default Initialize;
+export default connect(mapStateToProps)(Initialize);

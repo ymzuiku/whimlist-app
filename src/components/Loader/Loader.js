@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, View, Text, ActivityIndicator } from 'react-native';
-import Lang from '../utilities/Lang';
+import Lang from '../../utilities/Lang';
 
 class Loader extends Component {
   constructor(props) {

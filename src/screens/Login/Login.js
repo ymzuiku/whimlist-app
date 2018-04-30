@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Button, Screen, TextInput, HyperlinkButton } from '@blankapp/ui';
+import { NavigationActions } from 'react-navigation';
+import { connect } from 'react-redux';
+import * as auth from '../../redux/actions/auth';
 
 class Login extends Component {
   static navigationOptions = {
@@ -17,8 +20,18 @@ class Login extends Component {
     };
   }
 
-  pressLogin = () => {
-    alert('Comming soon');
+  pressLogin = async () => {
+    const { handleLogin } = this.props; // eslint-disable-line
+    try {
+      await handleLogin(this.state);
+
+      this.navigation.dispatch(NavigationActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({ routeName: 'Home' })],
+      }));
+    } catch (error) {
+      alert(error.message);
+    }
   }
 
   pressForgotPassword = () => {
@@ -62,4 +75,14 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapStateToProps = state => ({
+  auth: state.auth,
+});
+const mapDispatchToProps = dispatch => ({
+  handleLogin: async (data) => {
+    dispatch(await auth.login(data));
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
+

@@ -16,6 +16,6 @@ const navigate = (routeName, params) => {
 };
 
 export default {
-  navigate,
   setTopLevelNavigator,
+  navigate,
 };

@@ -56,7 +56,7 @@ class HttpClient {
     });
 
     const responseJson = await response.json();
-    return responseJson.data;
+    return responseJson;
   }
 }
 

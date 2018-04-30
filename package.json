@@ -1,7 +1,7 @@
 {
   "name": "whimlist-app",
   "version": "0.0.1",
-  "homepage": "https://whimlist.blankapp.org",
+  "homepage": "https://whimlist.me",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "clean": "watchman watch-del-all && rm -rf $TMPDIR/react-* && rm -rf node_modules/ && yarn install",
@@ -17,7 +17,6 @@
   "dependencies": {
     "@blankapp/ui": "git+https://github.com/blankapp/ui.git#develop",
     "@blankapp/ui-pro": "git+https://github.com/blankapp/ui-pro.git#develop",
-    "lodash": "^4.17.5",
     "prop-types": "^15.6.1",
     "react": "16.3.2",
     "react-dom": "^16.3.1",
@@ -26,7 +25,10 @@
     "react-native-web": "^0.5.4",
     "react-navigation": "^1.5.11",
     "react-redux": "^5.0.7",
-    "redux": "^4.0.0"
+    "redux": "^4.0.0",
+    "redux-logger": "^3.0.6",
+    "redux-persist": "^5.9.1",
+    "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.2.6",

@@ -1,5 +1,8 @@
 import React, { PureComponent } from 'react';
-import { Text, View, HyperlinkButton } from '@blankapp/ui';
+import { TouchableOpacity } from 'react-native';
+import { Divider, FlatList, HyperlinkButton, Title, View, Subtitle } from '@blankapp/ui';
+import { connect } from 'react-redux';
+import { Avatar, ListItem } from '../../components';
 
 import NavigationService from '../../navigators/NavigationService';
 
@@ -7,31 +10,101 @@ class Drawer extends PureComponent {
   constructor(props) {
     super(props);
     this.navigation = this.props.navigation;
+
+    this.renderItem = this.renderItem.bind(this);
+
+    this.state = {
+      currentRouteName: 'ListOfToday',
+      itemSources: [
+        {
+          title: 'Today',
+          routeName: 'ListOfToday',
+        },
+        {
+          title: 'Upcoming',
+          routeName: 'ListOfUpcoming',
+        },
+        {
+          title: 'Some',
+          routeName: 'ListOfSome',
+        },
+        {
+          title: 'New List',
+          routeName: 'ListNew',
+        },
+      ],
+    };
+  }
+
+  renderItem({ item }) {
+    const { title, routeName } = item;
+    return (
+      <ListItem
+        title={title}
+        onPress={() => {
+          if (this.state.currentRouteName === routeName) {
+            this.navigation.navigate('DrawerClose');
+          } else {
+            this.navigation.navigate(routeName);
+            this.setState({
+              currentRouteName: routeName,
+            });
+          }
+        }}
+      />
+    );
   }
 
   render() {
+    const { auth } = this.props; // eslint-disable-line
+
+    const {
+      email,
+      name,
+      avatar_url: avatarUrl,
+    } = auth.user;
+
     return (
       <View>
-        <Text>DrawerMenu</Text>
+        <TouchableOpacity
+          onPress={() => NavigationService.navigate('UserProfile')}
+        >
+          <View
+            style={{
+              flexDirection: 'row',
+              padding: 12,
+            }}
+          >
+            <Avatar
+              source={{ uri: avatarUrl }}
+            />
+            <View
+              style={{
+                marginLeft: 12,
+              }}
+            >
+              <Title>{name || email}</Title>
+              <Subtitle>Comming soon</Subtitle>
+            </View>
+          </View>
+        </TouchableOpacity>
+        <FlatList
+          data={this.state.itemSources}
+          renderItem={this.renderItem}
+          ItemSeparatorComponent={() => <Divider />}
+        />
         <HyperlinkButton
           text="Settings"
           onPress={() => NavigationService.navigate('Settings')}
-        />
-        <HyperlinkButton
-          text="List Of Today"
-          onPress={() => this.navigation.navigate('ListOfToday')}
-        />
-        <HyperlinkButton
-          text="List Of Upcoming"
-          onPress={() => this.navigation.navigate('ListOfUpcoming')}
-        />
-        <HyperlinkButton
-          text="List Of Some"
-          onPress={() => this.navigation.navigate('ListOfSome')}
         />
       </View>
     );
   }
 }
 
-export default Drawer;
+const mapStateToProps = state => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps)(Drawer);
+
