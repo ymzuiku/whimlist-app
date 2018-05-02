@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import { Button, Screen } from '@blankapp/ui';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
-import TextInputLayout from './TextInputLayout';
+import TextInputLayout from '../../components';
 import { sharedApiClient as apiClient } from '../../services';
 import { loginSuccess } from '../../redux/actions/auth';
 
