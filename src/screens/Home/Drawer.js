@@ -75,9 +75,9 @@ class Drawer extends PureComponent {
               padding: 12,
             }}
           >
-            <Avatar
+            {avatarUrl ? <Avatar
               source={{ uri: avatarUrl }}
-            />
+            /> : null}
             <View
               style={{
                 marginLeft: 12,

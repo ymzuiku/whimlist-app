@@ -9,6 +9,8 @@ module.exports = {
     "no-alert": 0,
     "class-methods-use-this": 0,
     "react/prop-types": [2, { ignore: ["navigation"], customValidators: [] }],
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "import/extensions": 0,
+    "react/prop-types": 0
   }
 };
