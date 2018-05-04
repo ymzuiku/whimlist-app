@@ -2,7 +2,16 @@ import locales from '../resources/locales';
 
 class Lang {
   constructor() {
-    this.lang = 'zh-Hans';
+    this.language = 'zh-Hans';
+  }
+
+  /**
+   * Use Language
+   *
+   * @param {*} language - Language
+   */
+  useLanguage(language) {
+    this.language = language;
   }
 
   get(key) {

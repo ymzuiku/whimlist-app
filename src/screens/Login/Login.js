@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Screen, TextInput, HyperlinkButton } from '@blankapp/ui';
+import { Button, HyperlinkButton, Screen, Text, TextInput, View } from '@blankapp/ui';
 import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import { Form } from '../../components';
@@ -32,8 +32,6 @@ class Login extends Component {
         method: 'POST',
         body: JSON.stringify({ email, password }),
       });
-
-      console.log(res);
 
       loginSuccess(res.data);
 
@@ -79,14 +77,20 @@ class Login extends Component {
             onPress={this.pressLogin}
           />
         </Form>
-        <HyperlinkButton
-          text="Forgot Password?"
-          onPress={this.pressForgotPassword}
-        />
-        <HyperlinkButton
-          text="Register"
-          onPress={this.pressRegister}
-        />
+        <View
+          style={{
+            flexWrap: 'wrap',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <Text>{'Don\'t have an account? '}</Text>
+          <HyperlinkButton
+            text="Register"
+            onPress={this.pressRegister}
+          />
+        </View>
       </Screen>
     );
   }

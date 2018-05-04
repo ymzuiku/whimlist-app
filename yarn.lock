@@ -431,13 +431,7 @@
     react-native-vector-icons "^4.6.0"
     react-navigation "^1.5.11"
 
-"@blankapp/ui@^1.0.5":
-  version "1.0.5"
-  resolved "git+https://github.com/blankapp/ui.git#405fb43f8aad48b39aae4ac7bcecf2e3acbff004"
-  dependencies:
-    hoist-non-react-statics "^2.5.0"
-
-"@blankapp/ui@git+https://github.com/blankapp/ui.git#develop":
+"@blankapp/ui@^1.0.5", "@blankapp/ui@git+https://github.com/blankapp/ui.git#develop":
   version "1.0.5"
   resolved "git+https://github.com/blankapp/ui.git#0b781e2414b4f80a9b7b32216300c9662dbdbba4"
   dependencies:
