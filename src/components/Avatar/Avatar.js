@@ -8,10 +8,16 @@ class Avatar extends PureComponent {
     const {
       ...restProps
     } = this.props;
+    let { source } = this.props;
+
+    if (source && !source.uri) {
+      source = null;
+    }
 
     return (
       <RNImage
         {...restProps}
+        source={source}
       />
     );
   }

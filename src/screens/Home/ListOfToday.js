@@ -8,7 +8,7 @@ import stackConfig from './stackConfig';
 
 class ListOfToday extends Component {
   static navigationOptions = {
-    title: 'List Of Today',
+    title: 'Today',
   };
 
   constructor(props) {

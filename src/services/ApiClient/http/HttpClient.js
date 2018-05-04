@@ -55,6 +55,11 @@ class HttpClient {
       response = interceptor(response);
     });
 
+    console.log(response);
+    if (!response.ok) {
+      throw new Error(`${response.status} - ${response.statusText}`);
+    }
+
     const responseJson = await response.json();
     return responseJson;
   }

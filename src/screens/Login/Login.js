@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { Button, Screen, TextInput, HyperlinkButton } from '@blankapp/ui';
 import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
+import { Form } from '../../components';
 import * as auth from '../../redux/actions/auth';
+import { sharedApiClient as apiClient } from '../../services';
 
 class Login extends Component {
   static navigationOptions = {
@@ -17,13 +19,23 @@ class Login extends Component {
     this.state = {
       email: '',
       password: '',
+      processing: false,
     };
   }
 
   pressLogin = async () => {
-    const { handleLogin } = this.props; // eslint-disable-line
+    const { loginSuccess } = this.props;
+    const { email, password } = this.state;
     try {
-      await handleLogin(this.state);
+      this.setState({ processing: true });
+      const res = await apiClient.sendRequest('/account/login', {
+        method: 'POST',
+        body: JSON.stringify({ email, password }),
+      });
+
+      console.log(res);
+
+      loginSuccess(res.data);
 
       this.navigation.dispatch(NavigationActions.reset({
         index: 0,
@@ -31,6 +43,8 @@ class Login extends Component {
       }));
     } catch (error) {
       alert(error.message);
+    } finally {
+      this.setState({ processing: false });
     }
   }
 
@@ -46,22 +60,25 @@ class Login extends Component {
     const isVaild = this.state.email.length === 0 || this.state.password.length === 0;
     return (
       <Screen>
-        <TextInput
-          placeholder="Email"
-          value={this.state.email}
-          onChangeText={text => this.setState({ email: text })}
-        />
-        <TextInput
-          placeholder="Password"
-          value={this.state.password}
-          onChangeText={text => this.setState({ password: text })}
-          secureTextEntry
-        />
-        <Button
-          text="Login"
-          disabled={isVaild}
-          onPress={this.pressLogin}
-        />
+        <Form>
+          <TextInput
+            placeholder="Email"
+            value={this.state.email}
+            onChangeText={text => this.setState({ email: text })}
+          />
+          <TextInput
+            placeholder="Password"
+            value={this.state.password}
+            onChangeText={text => this.setState({ password: text })}
+            secureTextEntry
+          />
+          <Button
+            text="Login"
+            disabled={isVaild}
+            loading={this.state.processing}
+            onPress={this.pressLogin}
+          />
+        </Form>
         <HyperlinkButton
           text="Forgot Password?"
           onPress={this.pressForgotPassword}
@@ -79,10 +96,9 @@ const mapStateToProps = state => ({
   auth: state.auth,
 });
 const mapDispatchToProps = dispatch => ({
-  handleLogin: async (data) => {
-    dispatch(await auth.login(data));
+  loginSuccess: (data) => {
+    dispatch(auth.loginSuccess(data));
   },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
-

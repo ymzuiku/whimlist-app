@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { Divider, Screen, SectionList, Text } from '@blankapp/ui';
+import { Button, Divider, Screen, SectionList, Text } from '@blankapp/ui';
+import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import { ListItem } from '../../components';
 import * as auth from '../../redux/actions/auth';
+import { sharedApiClient as apiClient } from '../../services';
 
 class Settings extends Component {
   static navigationOptions = {
@@ -44,8 +46,7 @@ class Settings extends Component {
           title: null,
           data: [
             {
-              title: 'Logout',
-              onPress: this.pressLogout,
+              customView: <Button text="Logout" onPress={this.pressLogout} />,
             },
           ],
         },
@@ -53,17 +54,26 @@ class Settings extends Component {
     };
   }
 
-  pressLogout() {
-    const { handleLogout } = this.props; // eslint-disable-line
+  pressLogout = async () => {
+    const { logoutSuccess } = this.props; // eslint-disable-line
 
-    handleLogout();
+    try {
+      await apiClient.sendRequest('/account/logout', {
+        method: 'POST',
+      });
+      logoutSuccess();
+
+      this.navigation.dispatch(NavigationActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({ routeName: 'Login' })],
+      }));
+    } catch (error) {
+      alert(error.message);
+    }
   }
 
   renderSectionHeader({ section }) {
     const { title } = section;
-    if (!title) {
-      return null;
-    }
     return (
       <Text
         style={{
@@ -79,7 +89,15 @@ class Settings extends Component {
   }
 
   renderItem({ item }) {
-    const { title, detailText, onPress } = item;
+    const {
+      customView,
+      title,
+      detailText,
+      onPress,
+    } = item;
+    if (customView) {
+      return customView;
+    }
     return (
       <ListItem
         title={title}
@@ -113,8 +131,8 @@ const mapStateToProps = state => ({
   auth: state.auth,
 });
 const mapDispatchToProps = dispatch => ({
-  handleLogout: async () => {
-    dispatch(await auth.logout());
+  logoutSuccess: () => {
+    dispatch(auth.logoutSuccess());
   },
 });
 

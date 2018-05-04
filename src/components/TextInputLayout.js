@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   input: {
-    border: '1px solid #f2f2f2',
+    // border: '1px solid #f2f2f2',
     height: 38,
     paddingLeft: 5,
   },

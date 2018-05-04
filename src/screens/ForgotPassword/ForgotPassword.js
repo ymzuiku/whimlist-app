@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Screen, TextInput } from '@blankapp/ui';
+import { Form } from '../../components';
 
 class ForgotPassword extends Component {
   static navigationOptions = {
@@ -24,16 +25,18 @@ class ForgotPassword extends Component {
     const isVaild = this.state.email.length === 0;
     return (
       <Screen>
-        <TextInput
-          placeholder="Email"
-          value={this.state.email}
-          onChangeText={text => this.setState({ email: text })}
-        />
-        <Button
-          text="Send"
-          disabled={isVaild}
-          onPress={this.pressSend}
-        />
+        <Form>
+          <TextInput
+            placeholder="Email"
+            value={this.state.email}
+            onChangeText={text => this.setState({ email: text })}
+          />
+          <Button
+            text="Send"
+            disabled={isVaild}
+            onPress={this.pressSend}
+          />
+        </Form>
       </Screen>
     );
   }

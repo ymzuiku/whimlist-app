@@ -8,7 +8,7 @@ import stackConfig from './stackConfig';
 
 class ListOfSome extends Component {
   static navigationOptions = {
-    title: 'List Of Some',
+    title: 'Some',
   };
 
   constructor(props) {

@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
 import { Button, Screen } from '@blankapp/ui';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
-import TextInputLayout from '../../components';
+import { Form, TextInputLayout } from '../../components';
 import { sharedApiClient as apiClient } from '../../services';
 import { loginSuccess } from '../../redux/actions/auth';
 
-const styles = StyleSheet.create({
-  screen: {
-    padding: 20,
-  },
-});
 
 class Register extends Component {
   static navigationOptions = {
@@ -53,25 +47,27 @@ class Register extends Component {
     const emailErr = errors.find(err => err.field === 'email');
     const passwordErr = errors.find(err => err.field === 'password');
     return (
-      <Screen style={styles.screen}>
-        <TextInputLayout
-          placeholder="Email"
-          value={this.state.email}
-          onChangeText={text => this.setState({ email: text })}
-          errMsg={emailErr ? emailErr.message : ''}
-        />
-        <TextInputLayout
-          placeholder="Password"
-          value={this.state.password}
-          onChangeText={text => this.setState({ password: text })}
-          secureTextEntry
-          errMsg={passwordErr ? passwordErr.message : ''}
-        />
-        <Button
-          text="Register"
-          disabled={isVaild}
-          onPress={this.pressRegister}
-        />
+      <Screen>
+        <Form>
+          <TextInputLayout
+            placeholder="Email"
+            value={this.state.email}
+            onChangeText={text => this.setState({ email: text })}
+            errMsg={emailErr ? emailErr.message : ''}
+          />
+          <TextInputLayout
+            placeholder="Password"
+            value={this.state.password}
+            onChangeText={text => this.setState({ password: text })}
+            secureTextEntry
+            errMsg={passwordErr ? passwordErr.message : ''}
+          />
+          <Button
+            text="Register"
+            disabled={isVaild}
+            onPress={this.pressRegister}
+          />
+        </Form>
       </Screen>
     );
   }

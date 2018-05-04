@@ -8,7 +8,7 @@ import stackConfig from './stackConfig';
 
 class ListOfUpcoming extends Component {
   static navigationOptions = {
-    title: 'List Of Upcoming',
+    title: 'Upcoming',
   };
 
   constructor(props) {

@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { TouchableOpacity } from 'react-native';
-import { Divider, FlatList, HyperlinkButton, Title, View, Subtitle } from '@blankapp/ui';
+import { Divider, FlatList, Title, View, Subtitle } from '@blankapp/ui';
+import { IconButton } from '@blankapp/ui-pro';
 import { connect } from 'react-redux';
 import { Avatar, ListItem } from '../../components';
 
@@ -56,13 +57,14 @@ class Drawer extends PureComponent {
   }
 
   render() {
-    const { auth } = this.props; // eslint-disable-line
+    const auth = this.props.auth || { user: {} };
+    const user = auth.user || {};
 
     const {
       email,
       name,
       avatar_url: avatarUrl,
-    } = auth.user;
+    } = user;
 
     return (
       <View>
@@ -75,27 +77,31 @@ class Drawer extends PureComponent {
               padding: 12,
             }}
           >
-            {avatarUrl ? <Avatar
+            <Avatar
               source={{ uri: avatarUrl }}
-            /> : null}
+            />
             <View
               style={{
-                marginLeft: 12,
+                flex: 1,
+                marginLeft: 10,
               }}
             >
-              <Title>{name || email}</Title>
-              <Subtitle>Comming soon</Subtitle>
+              <Title>{name || 'N/A'}</Title>
+              <Subtitle>{email}</Subtitle>
             </View>
+            <IconButton
+              iconName="settings"
+              iconStyle={{
+                padding: 0,
+              }}
+              onPress={() => NavigationService.navigate('Settings')}
+            />
           </View>
         </TouchableOpacity>
         <FlatList
           data={this.state.itemSources}
           renderItem={this.renderItem}
           ItemSeparatorComponent={() => <Divider />}
-        />
-        <HyperlinkButton
-          text="Settings"
-          onPress={() => NavigationService.navigate('Settings')}
         />
       </View>
     );
