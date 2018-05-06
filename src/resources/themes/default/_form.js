@@ -6,8 +6,5 @@ export default {
   },
   FormField: {
     marginBottom: 10,
-    TextInput: {
-      flex: 1,
-    },
   },
 };

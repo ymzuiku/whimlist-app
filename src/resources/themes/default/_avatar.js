@@ -5,6 +5,6 @@ export default {
     borderRadius: 100,
     borderWidth: 2,
     borderColor: '#cccccc',
-    backgroundColor: '#cccccc',
+    // backgroundColor: '#cccccc',
   },
 };

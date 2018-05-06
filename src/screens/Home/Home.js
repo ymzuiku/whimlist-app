@@ -16,6 +16,8 @@ class Home extends Component {
     super(props);
     this.navigation = this.props.navigation;
 
+    this.loadData = this.loadData.bind(this);
+
     this.state = {
       lists: [],
     };

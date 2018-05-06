@@ -1,11 +1,19 @@
 import React, { PureComponent } from 'react';
-import { TouchableOpacity } from 'react-native';
+import PropTypes from 'prop-types';
+import { SafeAreaView, TouchableOpacity } from 'react-native';
 import { Divider, FlatList, Title, View, Subtitle } from '@blankapp/ui';
 import { IconButton } from '@blankapp/ui-pro';
 import { connect } from 'react-redux';
 import { Avatar, Drawer } from '../../components';
 import NavigationService from '../../navigators/NavigationService';
 import { t } from '../../utilities/I18n';
+
+const propTypes = {
+  lists: PropTypes.arrayOf(PropTypes.object),
+};
+const defaultProps = {
+  lists: [],
+};
 
 class DrawerContent extends PureComponent {
   constructor(props) {
@@ -70,7 +78,7 @@ class DrawerContent extends PureComponent {
     } = user;
 
     return (
-      <View
+      <SafeAreaView
         style={{
           flex: 1,
         }}
@@ -123,10 +131,13 @@ class DrawerContent extends PureComponent {
             onPress={() => NavigationService.navigate('ListNew')}
           />
         </View>
-      </View>
+      </SafeAreaView>
     );
   }
 }
+
+DrawerContent.propTypes = propTypes;
+DrawerContent.defaultProps = defaultProps;
 
 const mapStateToProps = state => ({
   auth: state.auth,

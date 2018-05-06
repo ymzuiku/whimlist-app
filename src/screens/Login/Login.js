@@ -77,6 +77,7 @@ class Login extends Component {
             }}
           >
             <TextInput
+              style={{ flex: 1 }}
               placeholder={t('screens.login.placeholderPassword')}
               value={this.state.password}
               onChangeText={text => this.setState({ password: text })}

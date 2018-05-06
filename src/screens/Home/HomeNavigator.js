@@ -7,11 +7,6 @@ import ListOfSome from '../ListOfSome';
 import ListOfToday from '../ListOfToday';
 import ListOfUpcoming from '../ListOfUpcoming';
 
-// const HomeListOfSome = StackNavigator({
-//   HomeListOfSome: {
-//     screen: ListOfSome,
-//   },
-// }, stackConfig);
 const HomeListOfToday = StackNavigator({
   HomeListOfToday: {
     screen: ListOfToday,
@@ -44,7 +39,7 @@ const HomeNavigator = (lists = []) => {
   });
   const drawerConfig = {
     initialRouteName: 'HomeListOfToday',
-    contentComponent: props => (<DrawerContent {...props} lists={lists} />),
+    contentComponent: props => <DrawerContent {...props} lists={lists} />,
   };
   return DrawerNavigator(routeConfigMap, drawerConfig);
 };

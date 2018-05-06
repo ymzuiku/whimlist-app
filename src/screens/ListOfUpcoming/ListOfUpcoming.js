@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Divider, FlatList, Screen, View } from '@blankapp/ui';
+import { SafeAreaView } from 'react-native';
+import { Divider, FlatList, Screen } from '@blankapp/ui';
 import { ListEmptyIndicator, ListItem } from '../../components';
 import NavigationService from '../../navigators/NavigationService';
 import { t } from '../../utilities/I18n';
@@ -57,13 +58,13 @@ class ListOfUpcoming extends Component {
           ItemSeparatorComponent={() => <Divider />}
           ListEmptyComponent={() => this.renderListEmpty()}
         />
-        <View>
+        <SafeAreaView>
           <Divider />
           <ListItem
             title={t('screens.listOfToday.buttonNewTask')}
             onPress={() => NavigationService.navigate('TaskNew', { listSlug: 'upcoming' })}
           />
-        </View>
+        </SafeAreaView>
       </Screen>
     );
   }

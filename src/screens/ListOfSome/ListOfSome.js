@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Divider, FlatList, Screen, View } from '@blankapp/ui';
+import { SafeAreaView } from 'react-native';
+import { Divider, FlatList, Screen } from '@blankapp/ui';
 import { AppBar } from '@blankapp/ui-pro';
 import { ListItem } from '../../components';
 import NavigationService from '../../navigators/NavigationService';
@@ -63,13 +64,13 @@ class ListOfSome extends Component {
           renderItem={this.renderItem}
           ItemSeparatorComponent={() => <Divider />}
         />
-        <View>
+        <SafeAreaView>
           <Divider />
           <ListItem
             title={t('screens.listOfToday.buttonNewTask')}
             onPress={() => NavigationService.navigate('TaskNew', { listId: 0 })}
           />
-        </View>
+        </SafeAreaView>
       </Screen>
     );
   }

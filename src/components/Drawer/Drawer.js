@@ -4,8 +4,8 @@ import { View as RNView } from 'react-native';
 import withStyles from '@blankapp/ui/src/withStyles';
 import DrawerItem from './DrawerItem';
 
-const Drawer = RNView;
+const Drawer = withStyles('Drawer')(RNView);
 
 Drawer.Item = DrawerItem;
 
-export default withStyles('Drawer')(Drawer);
+export default Drawer;
