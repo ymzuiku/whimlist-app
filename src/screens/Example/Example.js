@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import { Screen, Text } from '@blankapp/ui';
 
 class Example extends Component {
-  static navigationOptions = {
-    title: 'Example',
+  // eslint-disable-next-line
+  static navigationOptions = ({ navigation, screenProps }) => {
+    return {
+      title: 'Example',
+    };
   };
 
   constructor(props) {

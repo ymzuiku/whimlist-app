@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import { Screen, Text } from '@blankapp/ui';
 
 class ListDetail extends Component {
-  static navigationOptions = {
-    title: 'ListDetail',
+  // eslint-disable-next-line
+  static navigationOptions = ({ navigation, screenProps }) => {
+    return {
+      title: 'ListDetail',
+    };
   };
 
   constructor(props) {

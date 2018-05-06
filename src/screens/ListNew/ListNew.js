@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { Screen, Text } from '@blankapp/ui';
+import { t } from '../../utilities/I18n';
 
 class ListNew extends Component {
-  static navigationOptions = {
-    title: 'ListNew',
+  // eslint-disable-next-line
+  static navigationOptions = ({ navigation, screenProps }) => {
+    return {
+      title: t('screens.listNew.title'),
+    };
   };
 
   constructor(props) {

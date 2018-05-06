@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { Button, Screen, TextInput } from '@blankapp/ui';
 import { Form } from '../../components';
+import { t } from '../../utilities/I18n';
 
 class ForgotPassword extends Component {
-  static navigationOptions = {
-    title: 'ForgotPassword',
+  // eslint-disable-next-line
+  static navigationOptions = ({ navigation, screenProps }) => {
+    return {
+      title: t('screens.forgotPassword.title'),
+    };
   };
 
   constructor(props) {
@@ -26,16 +30,21 @@ class ForgotPassword extends Component {
     return (
       <Screen>
         <Form>
-          <TextInput
-            placeholder="Email"
-            value={this.state.email}
-            onChangeText={text => this.setState({ email: text })}
-          />
-          <Button
-            text="Send"
-            disabled={isVaild}
-            onPress={this.pressSend}
-          />
+          <Form.Field>
+            <TextInput
+              placeholder={t('screens.forgotPassword.placeholderEmail')}
+              value={this.state.email}
+              onChangeText={text => this.setState({ email: text })}
+              keyboardType="email-address"
+            />
+          </Form.Field>
+          <Form.Field>
+            <Button
+              text={t('screens.forgotPassword.buttonSend')}
+              disabled={isVaild}
+              onPress={this.pressSend}
+            />
+          </Form.Field>
         </Form>
       </Screen>
     );

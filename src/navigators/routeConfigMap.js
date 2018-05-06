@@ -11,6 +11,7 @@ import Settings from '../screens/Settings';
 import TaskDetail from '../screens/TaskDetail';
 import TaskNew from '../screens/TaskNew';
 import UserProfile from '../screens/UserProfile';
+import UserProfileEdit from '../screens/UserProfileEdit';
 
 const routeConfigMap = {
   Example: {
@@ -52,6 +53,9 @@ const routeConfigMap = {
   },
   UserProfile: {
     screen: UserProfile,
+  },
+  UserProfileEdit: {
+    screen: UserProfileEdit,
   },
 };
 

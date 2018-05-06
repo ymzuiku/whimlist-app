@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { Screen, Text } from '@blankapp/ui';
+import { t } from '../../utilities/I18n';
 
 class TaskNew extends Component {
-  static navigationOptions = {
-    title: 'TaskNew',
+  // eslint-disable-next-line
+  static navigationOptions = ({ navigation, screenProps }) => {
+    return {
+      title: t('screens.taskNew.title'),
+    };
   };
 
   constructor(props) {

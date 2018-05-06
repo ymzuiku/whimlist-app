@@ -5,11 +5,14 @@ import { NavigationActions } from 'react-navigation';
 import { Form, TextInputLayout } from '../../components';
 import { sharedApiClient as apiClient } from '../../services';
 import { loginSuccess } from '../../redux/actions/auth';
-
+import { t } from '../../utilities/I18n';
 
 class Register extends Component {
-  static navigationOptions = {
-    title: 'Register',
+  // eslint-disable-next-line
+  static navigationOptions = ({ navigation, screenProps }) => {
+    return {
+      title: t('screens.register.title'),
+    };
   };
 
   constructor(props) {
@@ -50,20 +53,20 @@ class Register extends Component {
       <Screen>
         <Form>
           <TextInputLayout
-            placeholder="Email"
+            placeholder={t('screens.login.placeholderEmail')}
             value={this.state.email}
             onChangeText={text => this.setState({ email: text })}
             errMsg={emailErr ? emailErr.message : ''}
           />
           <TextInputLayout
-            placeholder="Password"
+            placeholder={t('screens.login.placeholderPassword')}
             value={this.state.password}
             onChangeText={text => this.setState({ password: text })}
             secureTextEntry
             errMsg={passwordErr ? passwordErr.message : ''}
           />
           <Button
-            text="Register"
+            text={t('screens.login.buttonRegister')}
             disabled={isVaild}
             onPress={this.pressRegister}
           />

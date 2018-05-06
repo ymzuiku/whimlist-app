@@ -2,10 +2,15 @@ import React, { Component } from 'react';
 import { ActivityIndicator, Screen } from '@blankapp/ui';
 import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
+import { t } from '../../utilities/I18n';
 
 class Initialize extends Component {
-  static navigationOptions = {
-    header: null,
+  // eslint-disable-next-line
+  static navigationOptions = ({ navigation, screenProps }) => {
+    return {
+      title: t('screens.initialize.title'),
+      header: null,
+    };
   };
 
   constructor(props) {

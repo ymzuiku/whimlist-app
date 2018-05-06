@@ -48,7 +48,7 @@ class ListItem extends PureComponent {
       titleView = <ListItemTitle>{title}</ListItemTitle>;
     }
     if (detailText) {
-      detailTextView = <ListItemDetailText>{title}</ListItemDetailText>;
+      detailTextView = <ListItemDetailText>{detailText}</ListItemDetailText>;
     }
 
     return (

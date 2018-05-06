@@ -1,4 +1,5 @@
 import {
+  white,
   transparent,
   textPrimary,
   textSecondary,
@@ -7,7 +8,7 @@ import { fontSizeTitle, fontSizeSubheading } from '@blankapp/ui/src/resources/th
 
 export default {
   ListItem: {
-    backgroundColor: transparent,
+    backgroundColor: white,
     padding: 12,
     flexDirection: 'row',
     alignItems: 'center',
@@ -17,12 +18,12 @@ export default {
     color: textPrimary,
     fontSize: fontSizeTitle,
     fontWeight: '500',
-    marginBottom: 4,
   },
   ListItemDetailText: {
     color: textSecondary,
     backgroundColor: transparent,
     fontSize: fontSizeSubheading,
+    marginTop: 4,
     marginBottom: 2,
   },
 };

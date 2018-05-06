@@ -1,6 +1,10 @@
 import { AppRegistry, Platform } from 'react-native';
 import iconFont from 'react-native-vector-icons/Fonts/MaterialIcons.ttf';
 import App from './src/App';
+import { DeviceInfo } from './src/modules';
+import { useLanguage } from './src/utilities/I18n';
+
+useLanguage(DeviceInfo.getDeviceLocale());
 
 AppRegistry.registerComponent('WhimList', () => App);
 if (Platform.OS === 'web') {

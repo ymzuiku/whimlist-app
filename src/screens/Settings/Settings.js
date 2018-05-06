@@ -5,10 +5,14 @@ import { connect } from 'react-redux';
 import { ListItem } from '../../components';
 import * as auth from '../../redux/actions/auth';
 import { sharedApiClient as apiClient } from '../../services';
+import { t } from '../../utilities/I18n';
 
 class Settings extends Component {
-  static navigationOptions = {
-    title: 'Settings',
+  // eslint-disable-next-line
+  static navigationOptions = ({ navigation, screenProps }) => {
+    return {
+      title: t('screens.settings.title'),
+    };
   };
 
   constructor(props) {
@@ -46,7 +50,12 @@ class Settings extends Component {
           title: null,
           data: [
             {
-              customView: <Button text="Logout" onPress={this.pressLogout} />,
+              customView: (
+                <Button
+                  text={t('screens.settings.buttonLogout')}
+                  onPress={this.pressLogout}
+                />
+              ),
             },
           ],
         },
@@ -61,14 +70,15 @@ class Settings extends Component {
       await apiClient.sendRequest('/account/logout', {
         method: 'POST',
       });
+    } catch (error) {
+      alert(error.message);
+    } finally {
       logoutSuccess();
 
       this.navigation.dispatch(NavigationActions.reset({
         index: 0,
         actions: [NavigationActions.navigate({ routeName: 'Login' })],
       }));
-    } catch (error) {
-      alert(error.message);
     }
   }
 
@@ -79,7 +89,7 @@ class Settings extends Component {
         style={{
           paddingLeft: 12,
           paddingRight: 12,
-          paddingTop: 12,
+          paddingTop: 6,
           paddingBottom: 6,
         }}
       >

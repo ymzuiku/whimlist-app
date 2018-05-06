@@ -3,11 +3,11 @@ export default {
     paddingTop: 12,
     paddingLeft: 12,
     paddingRight: 12,
+  },
+  FormField: {
+    marginBottom: 10,
     TextInput: {
-      marginBottom: 10,
-    },
-    Button: {
-      marginBottom: 10,
+      flex: 1,
     },
   },
 };

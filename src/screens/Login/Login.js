@@ -5,10 +5,14 @@ import { connect } from 'react-redux';
 import { Form } from '../../components';
 import * as auth from '../../redux/actions/auth';
 import { sharedApiClient as apiClient } from '../../services';
+import { t } from '../../utilities/I18n';
 
 class Login extends Component {
-  static navigationOptions = {
-    title: 'Login',
+  // eslint-disable-next-line
+  static navigationOptions = ({ navigation, screenProps }) => {
+    return {
+      title: t('screens.login.title'),
+    };
   };
 
   constructor(props) {
@@ -59,23 +63,43 @@ class Login extends Component {
     return (
       <Screen>
         <Form>
-          <TextInput
-            placeholder="Email"
-            value={this.state.email}
-            onChangeText={text => this.setState({ email: text })}
-          />
-          <TextInput
-            placeholder="Password"
-            value={this.state.password}
-            onChangeText={text => this.setState({ password: text })}
-            secureTextEntry
-          />
-          <Button
-            text="Login"
-            disabled={isVaild}
-            loading={this.state.processing}
-            onPress={this.pressLogin}
-          />
+          <Form.Field>
+            <TextInput
+              placeholder={t('screens.login.placeholderEmail')}
+              value={this.state.email}
+              onChangeText={text => this.setState({ email: text })}
+              keyboardType="email-address"
+            />
+          </Form.Field>
+          <Form.Field
+            style={{
+              flexDirection: 'row',
+            }}
+          >
+            <TextInput
+              placeholder={t('screens.login.placeholderPassword')}
+              value={this.state.password}
+              onChangeText={text => this.setState({ password: text })}
+              maxLength={32}
+              secureTextEntry
+            />
+            <HyperlinkButton
+              style={{
+                position: 'absolute',
+                right: 10,
+              }}
+              text={t('screens.login.buttonForgotPassword')}
+              onPress={this.pressForgotPassword}
+            />
+          </Form.Field>
+          <Form.Field>
+            <Button
+              text={t('screens.login.buttonLogin')}
+              disabled={isVaild}
+              loading={this.state.processing}
+              onPress={this.pressLogin}
+            />
+          </Form.Field>
         </Form>
         <View
           style={{
@@ -85,9 +109,9 @@ class Login extends Component {
             justifyContent: 'center',
           }}
         >
-          <Text>{'Don\'t have an account? '}</Text>
+          <Text>{t('screens.login.messageDoNotHaveAnAccount')}</Text>
           <HyperlinkButton
-            text="Register"
+            text={t('screens.login.buttonRegister')}
             onPress={this.pressRegister}
           />
         </View>

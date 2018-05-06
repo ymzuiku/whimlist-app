@@ -17,10 +17,12 @@
   "dependencies": {
     "@blankapp/ui": "git+https://github.com/blankapp/ui.git#develop",
     "@blankapp/ui-pro": "git+https://github.com/blankapp/ui-pro.git#develop",
+    "fbemitter": "^2.1.1",
     "prop-types": "^15.6.1",
     "react": "16.3.2",
     "react-dom": "^16.3.1",
     "react-native": "^0.55.2",
+    "react-native-device-info": "^0.21.5",
     "react-native-vector-icons": "^4.6.0",
     "react-native-web": "^0.5.4",
     "react-navigation": "^1.5.11",

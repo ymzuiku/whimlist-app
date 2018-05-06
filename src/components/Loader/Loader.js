@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, View, Text, ActivityIndicator } from 'react-native';
-import Lang from '../../utilities/Lang';
+import I18n from '../../utilities/I18n';
 
 class Loader extends Component {
   constructor(props) {
@@ -24,7 +24,7 @@ class Loader extends Component {
 
   render() {
     const { props } = this;
-    const message = (props.message && props.message !== '') ? props.message : Lang.get('components.loader.messageProgressing');
+    const message = (props.message && props.message !== '') ? props.message : I18n.get('components.loader.messageProgressing');
 
     return (
       <Modal
