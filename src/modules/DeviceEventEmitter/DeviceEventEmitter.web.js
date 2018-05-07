@@ -6,4 +6,4 @@ class DeviceEventEmitter extends EventEmitter {
   }
 }
 
-export default DeviceEventEmitter;
+export default new DeviceEventEmitter();

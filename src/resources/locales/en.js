@@ -1,6 +1,15 @@
 export default {
   appName: 'WhimList',
   globals: {
+    messageTokenExpired: 'Session expired. Please login again.',
+  },
+  modules: {
+    alert: {
+      ok: 'Ok',
+      cancel: 'Cancel',
+      yes: 'Yes',
+      no: 'No',
+    },
   },
   components: {
     dialog: {

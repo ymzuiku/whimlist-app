@@ -1,5 +1,6 @@
 import HttpClient from './http/HttpClient';
 import configuredStore from '../../redux/store';
+import { DeviceEventEmitter } from '../../modules';
 
 class ApiClient {
   constructor(defaults = {
@@ -19,6 +20,14 @@ class ApiClient {
       return { url, options };
     });
     this.http.interceptors.response.push((response) => {
+      const { auth } = configuredStore.store.getState();
+      const { status } = response;
+
+      if (auth && auth.isLoggedIn && status === 401) {
+        DeviceEventEmitter.emit('tokenExpiredEvent');
+      }
+
+      console.log(response);
       setTimeout(async () => {
         console.log('Response:');
         console.log(`url: ${(await response).url}`);

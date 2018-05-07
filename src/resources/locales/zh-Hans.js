@@ -1,6 +1,15 @@
 export default {
   appName: '一念清单',
   globals: {
+    messageTokenExpired: '会话已过期。 请再次登录。',
+  },
+  modules: {
+    alert: {
+      ok: '确定',
+      cancel: '取消',
+      yes: '是',
+      no: '否',
+    },
   },
   components: {
     dialog: {
